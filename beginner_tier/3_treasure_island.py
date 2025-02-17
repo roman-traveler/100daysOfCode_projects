@@ -20,22 +20,25 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 /______/______/______/______/______/______/______/______/______/______/[TomekK]
 *******************************************************************************
 '''
-print(treasure_ascii)
-print("Welcome to Treasure Island.")
-print("Your mention is to find the treasure.")
-print("You're at a crossroads. Where do you want to go?")
-first_choice=input("Type Left or Right\n")
-if first_choice.lower() != "left":
-    print("You got eaten by a grue. Game Over")
-else:
+while True:
+    import os
+    clear = lambda: os.system('clear')
+    clear()
+    print(treasure_ascii)
+    print("Welcome to Treasure Island.")
+    print("Your mention is to find the treasure.")
+    print("You're at a crossroads. Where do you want to go?")
+    first_choice=input("Type Left or Right\n")
+    if first_choice.lower() != "left":
+        input("You got eaten by a grue. Game Over")
+        continue
     print("You are at an island. Do you want to swim or wait for a boat?")
     second_choice=input("Type Swim or Wait\n")
     if second_choice.lower() != "wait":
-        print("You drowned. Game Over")
+        input("You drowned. Game Over")
+        continue
+    third_choice=input("Type Red, Blue or Green\n")
+    if third_choice.lower() != "blue":
+        print("The door exploded in your face. Game Over")
     else:
-        print("Which door?")
-        third_choice=input("Type Red, Blue or Green\n")
-        if third_choice.lower() != "blue":
-            print("The door exploded in your face. Game Over")
-        else:
-            print("You found the treasure!")
+        print("You found the treasure!")
