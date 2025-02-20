@@ -23,8 +23,8 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 while True:
     import os
 
-    clear = lambda: os.system("clear")
-    clear()
+    os.system("clear")
+
     print(treasure_ascii)
     print("Welcome to Treasure Island.")
     print("Your mention is to find the treasure.")
