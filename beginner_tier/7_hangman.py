@@ -1,3 +1,6 @@
+from urllib.request import Request, urlopen
+import random
+
 hangman_array = [
     r"""
   ____
@@ -73,13 +76,24 @@ hangman_array = [
 """,
 ][::-1]  # Displaying this way feels more natural, but I would rather have a count down
 
+# Pick random word
+url = "https://svnweb.freebsd.org/csrg/share/dict/words?revision=61569&view=co"
+req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+
+web_byte = urlopen(req).read()
+
+webpage = web_byte.decode("utf-8")
+word_to_find = random.choice(webpage.split("\n"))
+
+# Initialize
 lives_remaining = 7
 guessed_word = ""
-word_to_find = "placeholder"
 fail_guesses = []
 correct_guesses = []
 print(f"Word: {"_"*len(word_to_find)}")
 print(hangman_array[lives_remaining])
+
+# Guessing loop
 while lives_remaining and guessed_word != word_to_find:
     guess = input("Type a letter\n")
     if len(guess) != 1:
@@ -101,7 +115,10 @@ while lives_remaining and guessed_word != word_to_find:
     )
     print(f"Word: {guessed_word}")
     print(hangman_array[lives_remaining])
+
+# Evaluate win condition
+print(f"The word was: {word_to_find.capitalize()}")
 if not lives_remaining:
     print("Game Over")
 else:
-    print("You won!")
+    print(f"You won! You still had {lives_remaining} lives")
