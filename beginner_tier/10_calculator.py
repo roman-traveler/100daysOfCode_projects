@@ -11,10 +11,13 @@ def operation(a, op, b):
     print(f"{a} {op} {b} = {val}")
     return val
 
+
 first_number = None
 keep_number = False
 while True:
-    first_number = float(input("Pick first number\n")) if not keep_number else first_number
+    first_number = (
+        float(input("Pick first number\n")) if not keep_number else first_number
+    )
     op = input("Pick operation: + - * /")
     second_number = float(input("Pick second number\n"))
     first_number = operation(first_number, op, second_number)
